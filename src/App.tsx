@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import Vessel from './components/Vessel/vessel';
+import { Route, Routes, useLocation as Location } from 'react-router-dom';
+import Home from './components/Home/home';
 import logo from './assets/logo.png';
+import NavTab from './components/NavTab/navTab';
+import Pay from './components/Pay/pay';
+import Order from './components/Order/order';
+import Shop from './components/Shop/shop';
+import Other from './components/Other/other';
 
 function App() {
+    const [curLocation, setCurLocation] = useState<string>('');
+    const location = Location();
+
+    useEffect(() => {
+        if (location.pathname === '/') {
+            setCurLocation('/home');
+            return;
+        }
+        setCurLocation(location.pathname);
+    }, [location.pathname]);
+
     return (
         <div id='app'>
             <div id='component-root'>
@@ -16,7 +33,17 @@ function App() {
                     </div>
                 </div>
             </div>
-            <Vessel />
+            <div id='application'>
+                <Routes>
+                    <Route path='/' Component={Home} />
+                    <Route path='/home' Component={Home} />
+                    <Route path='/pay' Component={Pay} />
+                    <Route path='/order' Component={Order} />
+                    <Route path='/shop' Component={Shop} />
+                    <Route path='/other' Component={Other} />
+                </Routes>
+                <NavTab curLocation={curLocation} />
+            </div>
         </div>
     );
 }

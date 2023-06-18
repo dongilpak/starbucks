@@ -1,0 +1,33 @@
+#navTab {
+    width: 100%;
+    height: 6rem;
+    background-color: rgba(157, 157, 157, 0.2);
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2.5rem 0;
+    position: fixed;
+    bottom: 0;
+    border-radius: 0 0 1rem 1rem;
+}
+
+.tab-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tab-wrapper.on {
+    color: #19a027;
+}
+
+.tab-wrapper svg {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+@media screen and (max-width: 960px) {
+    #navTab {
+        padding: 1rem 1rem 0;
+        justify-content: space-around;
+    }
+}
